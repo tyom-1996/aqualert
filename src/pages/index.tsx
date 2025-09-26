@@ -54,7 +54,7 @@ const Home: React.FC = () => {
             <section className="top">
                 <div className="top_wrapper">
                     <div className="top_img">
-                        <img src="/images/main_page_img1.png" alt="" />
+                        <img src="/images/main_page_img1.webp" alt="" />
                     </div>
                     <div className="top_info_items_wrapper">
                         <div className="top_info_item_wrapper_item">
