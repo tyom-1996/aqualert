@@ -370,7 +370,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     background-color: #D9D9D9;
     border-radius: 40px;
     padding: 47px 37px 30px 37px;
@@ -380,7 +380,7 @@
 .technology_img {
     width: 154px;
     height: 154px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 .technology_img img {
     width: 100%;
@@ -464,3 +464,264 @@
     align-items: center;
     justify-content: center;
 }
+
+
+@media (max-width: 1860px) {
+    .top_wrapper {
+       max-width: unset!important;
+       width: 95%!important;
+    }
+    .advantages_wrapper {
+        max-width: unset!important;
+        width: 95%!important;
+    }
+}
+
+@media (min-width: 1559px) and (max-width: 1650px) {
+   
+    .advantages_grid {
+        gap: 25px!important;
+    }
+    .advantages_wrapper_item_title {
+        font-size: 25px!important;
+    }
+    .advantages_wrapper_item1 {
+        max-width: 760px!important;
+        width: 100%;
+        margin-right: 10px;
+    }
+    .advantages {
+        margin-bottom: 60px!important;
+    }
+    .advantage_title {
+        font-size: 23px!important;
+        line-height: 26px!important;
+    }
+
+}
+@media (min-width: 1430px) and (max-width: 1559px) {
+   
+    .advantages_grid {
+        gap: 20px!important;
+    }
+    .advantages_wrapper_item_title {
+        font-size: 23px!important;
+    }
+    .advantages_wrapper_item1 {
+        max-width: 700px!important;
+        width: 100%;
+        margin-right: 10px;
+    }
+    .advantages {
+        margin-bottom: 60px!important;
+        bottom: 38px!important;
+    }
+    .advantage_title {
+        font-size: 20px!important;
+        line-height: 22px!important;
+    }
+    .advantages_wrapper_item2 {
+        bottom: 60px!important;
+        left: 5px!important;
+    }
+
+}
+
+@media  (max-width: 1430px) {
+   
+    .advantages_grid {
+        gap: 15px!important;
+    }
+    .advantages_wrapper_item_title {
+        font-size: 20px!important;
+        line-height: 30px!important;
+    }
+    .advantages_wrapper_item1 {
+        max-width: 670px!important;
+        width: 100%;
+        margin-right: 10px;
+    }
+    .advantages {
+        margin-bottom: 40px!important;
+        bottom: 38px!important;
+    }
+    .advantage_title {
+        font-size: 18px!important;
+        line-height: 22px!important;
+    }
+    .advantages_wrapper_item2 {
+        bottom: 60px!important;
+        left: 5px!important;
+    }
+
+}
+@media (min-width: 1300px) and (max-width: 1482px) {
+    .top_info_item_wrapper_item_title {
+        font-size: 65px!important;
+        line-height: 80px!important;
+        margin-bottom: 115px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+    .top_info_item_wrapper_item_title {
+        font-size: 58px!important;
+        line-height: 75px!important;
+        margin-bottom: 95px!important;
+    }
+    .top_info_items_wrapper {
+        padding: 18px 23px 49px 40px!important;
+    }
+    .advantages {
+        margin-bottom: 30px!important;
+        bottom: 38px!important;
+    }
+}
+@media  (max-width: 1200px) {
+    .advantages {
+        margin-bottom: 30px!important;
+        bottom: 38px!important;
+    }
+    .top_info_item_wrapper_item_title {
+        font-size: 50px!important;
+        line-height: 70px!important;
+        margin-bottom: 85px!important;
+    }
+    .top_info_items_wrapper {
+        padding: 18px 23px 49px 30px!important;
+    }
+    .top_info_item_wrapper_item_nav_link {
+        font-size: 30px!important;
+    }
+    .top_info_item_wrapper_item_link2 {
+        max-width: 300px!important;
+        width: 100%;
+        height: 75px!important;
+    }
+    .top_info_item_wrapper_item_link2 span {
+        font-size: 27px!important;
+        margin-right: 23px!important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1470px) {
+    .about_us_wrapper {
+        max-width: unset!important;
+        width: 95%!important;
+    }
+    .about_us_description {
+        font-size: 28px!important;
+    }
+}
+
+@media  (max-width: 1200px) {
+    .footer_wrapper_item_nav_list {
+        gap: 40px!important;
+    }
+    .footer_wrapper_item_info {
+        font-size: 20px!important;
+    }
+    .footer_wrapper_item_nav_link {
+        font-size: 20px!important;
+    }
+    .about_us_wrapper {
+        max-width: unset!important;
+        width: 95%!important;
+    }
+    .about_us_description {
+        font-size: 26px!important;
+    }
+    .about_us_title {
+        font-size: 35px!important;
+        margin-bottom: 35px!important;
+    }
+}
+@media (max-width: 1550px) {
+    .footer_wrapper_item_wrapper {
+        max-width: unset!important;
+        width: 95%!important;
+    }
+    .technologies_wrapper {
+        max-width: unset!important;
+        width: 95%!important;
+    }
+    .technologies_grid {
+        gap: 50px!important;
+    }
+    .technologies {
+        margin-bottom: 100px!important;
+    }
+ 
+}
+
+@media (min-width: 1280px) and (max-width: 1380px) {
+   .technology_img {
+        width: 130px!important;
+        height: 130px!important;
+   }
+   .technology_description {
+    font-size: 23px!important;
+   }
+   .technology_title {
+    font-size: 35px!important;
+   }
+   .technology_card {
+    padding: 47px 27px 30px 27px!important;
+   }
+   .technologies_grid {
+        gap: 40px!important;
+    }
+}
+
+
+@media (min-width: 1120px) and (max-width: 1280px) {
+    .technology_img {
+         width: 100px!important;
+         height: 100px!important;
+    }
+    .technology_description {
+     font-size: 21px!important;
+    }
+    .technology_title {
+     font-size: 30px!important;
+    }
+    .technology_card {
+     padding: 47px 22px 30px 22px!important;
+    }
+    .technologies_grid {
+        gap: 30px!important;
+    }
+    .technologies {
+        margin-bottom: 80px!important;
+    }
+    .about_us {
+        margin-bottom: 80px!important;
+    }
+ }
+
+
+@media (max-width: 1120px) {
+    .technology_img {
+         width: 100px!important;
+         height: 100px!important;
+    }
+    .technology_description {
+     font-size: 20px!important;
+    }
+    .technology_title {
+     font-size: 28px!important;
+    }
+    .technology_card {
+     padding: 34px 18px 30px 18px!important;
+    }
+    .technologies_grid {
+        gap: 25px!important;
+    }
+    .technologies {
+        margin-bottom: 75px!important;
+    }
+    .about_us {
+        margin-bottom: 75px!important;
+    }
+ }
+
