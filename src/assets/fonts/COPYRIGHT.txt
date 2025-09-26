@@ -1,0 +1,1 @@
+Copyright 2022 The Aboreto Project Authors (https://github.com/domija/Aboreto)
