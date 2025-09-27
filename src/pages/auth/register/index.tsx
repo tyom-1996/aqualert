@@ -152,7 +152,7 @@ const Register: React.FC = () => {
     
     return (
         <main className="login_main_page">
-            <div className="login_form_wrapper">
+            <div className={`login_form_wrapper ${formData.accountType === 'individual' ? 'login_form_wrapper1' : 'login_form_wrapper2'}`}>
                 <h1 className="login_title">Регистрация</h1>
                 
                 {/* Account Type Selection */}
@@ -229,13 +229,14 @@ const Register: React.FC = () => {
                             
                             <div className="input_group">
                                 <input
-                                    type="text"
+                                    type="number"
                                     name="inn"
                                     value={formData.inn}
                                     onChange={handleInputChange}
                                     placeholder="ИНН"
                                     className={`login_input ${errors.inn ? 'error' : ''}`}
                                     disabled={isLoading}
+
                                 />
                                 {errors.inn && (
                                     <span className="error_message">{errors.inn}</span>
