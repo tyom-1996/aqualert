@@ -40,7 +40,7 @@ const Home: React.FC = () => {
             id: 2,
             image: "/images/technology_img2.png",
             title: "AI",
-            description: "Мы разработали собственную ML-модель, которая точно прогнозирует риски затоплений и подтоплений на основе сложных гидрологических данных."
+            description: "Мы разработали         собственную ML-модель, которая точно прогнозирует риски затоплений и подтоплений на основе сложных гидрологических данных."
         },
         {
             id: 3,
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
             <section className="top">
                 <div className="top_wrapper">
                     <div className="top_img">
-                        <img src="/images/top.webp" alt="" />
+                        <img src="/images/restangle.webp" alt="" />
                     </div>
                     <div className="top_info_items_wrapper">
                         <div className="top_info_item_wrapper_item">
@@ -122,10 +122,8 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section className="advantages">
-                <div className="advantages_wrapper">
+                <section className="advantages">
+                    <div className="advantages_wrapper">
                     <div className="advantages_wrapper_item1">
                         <p className="advantages_wrapper_item_title">
                             Цифровая экосистема, прогнозирующая наступление затоплений и подтоплений, а также других неблагоприятных природных событий
@@ -152,7 +150,10 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </section> 
             </section>
+
+         
             <section className="about_us">
                 <div className="about_us_wrapper">
                     <h1 className="about_us_title">О нас </h1>
@@ -179,9 +180,7 @@ const Home: React.FC = () => {
                         </div>
 
                 </div>
-            </section>
-
-            <section className="footer">
+                <section className="footer">
                 <div className="footer_wrapper">
                     <p className="footer_wrapper_info">
                         Работа выполнена при поддержке гранта Фонда содействия инновациям, предоставленного в рамках программы «Студенческий стартап» федерального проекта «Платформа университетского технологического предпринимательства».
@@ -193,14 +192,15 @@ const Home: React.FC = () => {
                             </p>
                             <nav className="footer_wrapper_item_nav">
                                 <ul className="footer_wrapper_item_nav_list">
+                           
                                     <li className="footer_wrapper_item_nav_list_item">
                                         <a href="" className="footer_wrapper_item_nav_link">
-                                            ФСИ
+                                             ФСИ
                                         </a>
                                     </li>
                                     <li className="footer_wrapper_item_nav_list_item">
                                         <a href="" className="footer_wrapper_item_nav_link">
-                                            NeuroLife
+                                                NeuroLife
                                         </a>
                                     </li>
                                 </ul>
@@ -210,6 +210,9 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </section>
+            </section>
+
+          
     
         
         </main>

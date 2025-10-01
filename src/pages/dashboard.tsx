@@ -168,7 +168,7 @@ const Dashboard: React.FC = () => {
                         <span>Скачать отчёт</span>
                       </button>
                     <div className="pdf-icon">
-                        <img src="/images/pdf_img_main.png" alt="" />
+                        <img src="/images/pdf_img5.png" alt="" />
                       </div>
                 </div>
                  

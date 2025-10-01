@@ -8,15 +8,16 @@
     font-display: swap;
 }
 
-@font-face {
+/* Alexandria font is loaded from Google Fonts in _document.js */
+/* @font-face {
     font-family: 'Alexandria';
     src: url('../fonts/Alexandria[wght].ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: 'Poppins';
     src: url('../fonts/Poppins-Regular.eot');
     src: url('../fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
@@ -28,6 +29,7 @@
     font-style: normal;
     font-display: swap;
 }
+ */
 
 
 * {
@@ -38,12 +40,13 @@
 .main_page {
     width: 100%;
     height: 100%;
-    padding-top: 40px;
+    padding-top: 25px;
     background-color: #FDFDFD;
 }
 
 .top {
     width: 100%;
+    min-height: 100vh;
 
 }
 .top_wrapper {
@@ -140,6 +143,11 @@
     max-width: 1030px;
     width: 100%;
     margin-bottom: 115px;
+    /* Drop shadow */
+    /* Text shadow */
+text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+
+
 }
 
 .top_info_item_wrapper_item_link2 {
@@ -198,11 +206,10 @@
     font-size: 25px;
     color: #248DC5;
     background: #FFFFFF;
+    border-color: #248DC5;
 
 }
-.top_info_item_wrapper_item_auth_button:hover {
-    border-color: #248DC5;
-}
+
 
 .top_info_item_wrapper_item_auth_button:first-child {
     margin-bottom: 15px;
@@ -225,21 +232,23 @@
     cursor: pointer;
 }
 .top_info_item_wrapper_item_nav_link {
-    display: block;
+    display: flex;
     font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-style: bold;
+    font-weight: bold;
     font-size: 35px;
     color: #FDFDFD;
     text-decoration: none;
     cursor: pointer;
     outline: none;
     border: none;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+
+
 }
 
 .advantages {
     width: 100%;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
     position: relative;
     bottom: 52px;
 }
@@ -263,7 +272,7 @@
     justify-content: space-between;
     background-color: #A3D0E8;
     border-radius: 20px;
-    padding: 13px 11px 34px 11px; 
+    padding: 13px 21px 34px 11px; 
     gap: 50px;
     position: relative;
     
@@ -306,6 +315,8 @@
 .advantages_wrapper_item1 {
     max-width: 812px;
     width: 100%;
+    position: relative;
+    top: 32px;
 }
 .advantages_wrapper_item2 {
     max-width: 867px;
@@ -365,12 +376,14 @@
 }
 .technologies {
     width: 100%;
-    margin-bottom: 146px;
+    /* margin-bottom: 146px; */
+    min-height: 100vh;
 }
 .technologies_wrapper {
     width: 100%;
     max-width: 1487px;
     margin: 0 auto;
+    margin-bottom: 146px;
 }
 .technologies_title {
     font-family: "Poppins", sans-serif;
@@ -393,8 +406,10 @@
     /* justify-content: space-between; */
     background-color: #D9D9D9;
     border-radius: 40px;
-    padding: 47px 37px 30px 37px;
+    padding: 47px 43px 40px 43px;
     box-shadow: 0px 0px 50px 0px rgba(36, 141, 197, 0.17);
+
+
 }
 
 .technology_img {
@@ -472,7 +487,7 @@
     cursor: pointer;
 }
 .footer_wrapper_item_nav_link {
-    font-family: 'Alexandria';
+    font-family: 'Alexandria', sans-serif;
     font-weight: 600;
     font-size: 22px;
     color: #000000;
@@ -519,6 +534,26 @@
     }
 
 }
+@media (max-width: 1860px) {
+   .top_info_item_wrapper_item_link {
+     margin-bottom: 60px!important;
+   }
+   .top_info_item_wrapper_item_title {
+        font-size: 65px!important;
+        line-height: 80px!important;
+        margin-bottom: 90px!important;
+    }
+    .top_img {
+        height: 750px!important;
+    }
+    .top_info_items_wrapper {
+        padding-bottom: 0!important;
+    }
+
+}
+
+
+
 @media (min-width: 1430px) and (max-width: 1559px) {
    
     .advantages_grid {
@@ -533,7 +568,7 @@
         margin-right: 10px;
     }
     .advantages {
-        margin-bottom: 60px!important;
+        /* margin-bottom: 60px!important; */
         bottom: 38px!important;
     }
     .advantage_title {
@@ -562,7 +597,7 @@
         margin-right: 10px;
     }
     .advantages {
-        margin-bottom: 40px!important;
+        /* margin-bottom: 40px!important; */
         bottom: 38px!important;
     }
     .advantage_title {
@@ -575,13 +610,6 @@
     }
 
 }
-@media (min-width: 1300px) and (max-width: 1482px) {
-    .top_info_item_wrapper_item_title {
-        font-size: 65px!important;
-        line-height: 80px!important;
-        margin-bottom: 115px;
-    }
-}
 
 @media (min-width: 1200px) and (max-width: 1300px) {
     .top_info_item_wrapper_item_title {
@@ -593,13 +621,13 @@
         padding: 18px 23px 49px 40px!important;
     }
     .advantages {
-        margin-bottom: 30px!important;
+        /* margin-bottom: 30px!important; */
         bottom: 38px!important;
     }
 }
 @media  (max-width: 1200px) {
     .advantages {
-        margin-bottom: 30px!important;
+        /* margin-bottom: 30px!important; */
         bottom: 38px!important;
     }
     .top_info_item_wrapper_item_title {
@@ -668,7 +696,10 @@
     .technologies_grid {
         gap: 50px!important;
     }
-    .technologies {
+    /* .technologies {
+        margin-bottom: 100px!important;
+    } */
+    .technologies_wrapper {
         margin-bottom: 100px!important;
     }
  
@@ -711,7 +742,10 @@
     .technologies_grid {
         gap: 30px!important;
     }
-    .technologies {
+    /* .technologies {
+        margin-bottom: 80px!important;
+    } */
+    .technologies_wrapper {
         margin-bottom: 80px!important;
     }
     .about_us {
@@ -737,7 +771,10 @@
     .technologies_grid {
         gap: 25px!important;
     }
-    .technologies {
+    /* .technologies {
+        margin-bottom: 75px!important;
+    } */
+    .technologies_wrapper {
         margin-bottom: 75px!important;
     }
     .about_us {
