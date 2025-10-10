@@ -206,13 +206,14 @@ text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
     font-size: 25px;
     color: #248DC5;
     background: #FFFFFF;
-    border-color: #248DC5;
+    /* border-color: #248DC5; */
 
 }
 
 
 .top_info_item_wrapper_item_auth_button:first-child {
     margin-bottom: 15px;
+    border-color: #248DC5;
 }
 .top_info_item_wrapper_item_nav {
     display: flex;
@@ -272,12 +273,21 @@ text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
     justify-content: space-between;
     background-color: #A3D0E8;
     border-radius: 20px;
-    padding: 13px 21px 34px 11px; 
+    padding: 15px 7px 32px 21px; 
     gap: 50px;
     position: relative;
     
 }
 
+.advantage_card:first-child {
+   background-image: url('/images/blue_back.png');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-color: unset!important;
+   height: 261px;
+   /* border-radius: unset!important; */
+}
 
 .advantages_wrapper_item_title {
     font-family: "Poppins", sans-serif;
@@ -316,8 +326,9 @@ text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
     max-width: 812px;
     width: 100%;
     position: relative;
-    top: 32px;
+    top: 36px;
 }
+
 .advantages_wrapper_item2 {
     max-width: 867px;
     width: 100%;
@@ -326,13 +337,13 @@ text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 }
 .advantage_icon_wrapper {
     position: absolute;
-    top: -14px;
-    right: -1px;
-    background-color: #FFFFFF;
+    top: -10px;
+    right: -23px;
+    /* background-color: #FFFFFF;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding: 10px;
+    padding: 10px; */
 }
 
 .advantage_icon {
@@ -406,7 +417,7 @@ text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
     /* justify-content: space-between; */
     background-color: #D9D9D9;
     border-radius: 40px;
-    padding: 47px 43px 40px 43px;
+    padding: 47px 37px 40px 37px;
     box-shadow: 0px 0px 50px 0px rgba(36, 141, 197, 0.17);
 
 
@@ -782,3 +793,125 @@ text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
     }
  }
 
+
+
+ @media (min-width: 1542px) and (max-width: 1600px) {
+    .advantage_icon {
+      width: 65px!important;
+      height: 65px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 0px!important;
+    right: -14px!important;
+  }
+  
+  }
+  
+  
+  
+  @media (min-width: 1514px) and (max-width: 1542px) {
+    .advantage_icon {
+      width: 60px!important;
+      height: 60px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 5px!important;
+    right: -10px!important;
+  }
+}
+
+
+  
+  
+  
+  @media (min-width: 1482px) and (max-width: 1514px) {
+    .advantage_icon {
+      width: 55px!important;
+      height: 55px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 5px!important;
+    right: -3px!important;
+  }
+}
+
+
+@media (min-width: 1309px) and (max-width: 1482px) {
+
+    .advantage_icon {
+      width: 45px!important;
+      height: 45px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 11px!important;
+    right: -10px!important;
+  }
+  .advantage_icon svg {
+    width: 25px!important;
+    height: 25px!important;
+  }
+
+}
+
+
+@media (min-width: 1309px) and (max-width: 1482px) {
+
+    .advantage_icon {
+      width: 45px!important;
+      height: 45px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 11px!important;
+    right: -10px!important;
+  }
+  .advantage_icon svg {
+    width: 25px!important;
+    height: 25px!important;
+  }
+
+
+}
+
+
+@media (min-width: 1287px) and (max-width: 1309px) {
+
+    .advantage_icon {
+      width: 40px!important;
+      height: 40px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 19px!important;
+    right: -7px!important;
+  }
+  .advantage_icon svg {
+    width: 20px!important;
+    height: 20px!important;
+  }
+
+
+}
+
+@media  (max-width: 1287px) {
+
+    .advantage_icon {
+      width: 35px!important;
+      height: 35px!important;
+  }
+  .advantage_icon_wrapper {
+    position: absolute;
+    top: 21px!important;
+    right: -6px!important;
+  }
+  .advantage_icon svg {
+    width: 20px!important;
+    height: 20px!important;
+  }
+
+
+}

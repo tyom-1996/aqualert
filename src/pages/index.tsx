@@ -13,19 +13,19 @@ const Home: React.FC = () => {
             id: 1,
             image: "/images/advantages_img1.png",
             icon: DropIcon,
-            title: "Снижаем миллионные риски для промышленности",
+            title: `Снижаем <br /> миллионные <br /> риски для <br /> промышленности`,
             alt: "Снижение рисков для промышленности"
         },
         {
             id: 2,
             image: "/images/advantages_img2.png",
-            title: "Точный прогноз на основе передового ИИ",
+            title: "Точный прогноз <br /> на основе <br /> передового ИИ",
             alt: "Искусственный интеллект"
         },
         {
             id: 3,
             image: "/images/advantages_img3.png",
-            title: "Первое отечественное решение для прогноза паводков",
+            title: "Первое <br /> отечественное <br /> решение для <br /> прогноза&nbspпаводков",
             alt: "Отечественное решение"
         }
     ];
@@ -40,15 +40,16 @@ const Home: React.FC = () => {
             id: 2,
             image: "/images/technology_img2.png",
             title: "AI",
-            description: "Мы разработали         собственную ML-модель, которая точно прогнозирует риски затоплений и подтоплений на основе сложных гидрологических данных."
+            description: "Мы разработали <br /> собственную ML-модель, которая точно прогнозирует риски затоплений и подтоплений на основе сложных гидрологических данных."
         },
         {
             id: 3,
             image: "/images/technology_img3.png",
             title: "API-интеграция",
-            description: "Наше решение в реальном времени использует актуальные данные через API, обеспечивая интеграцию с вашими системами и максимальную достоверность прогнозов."
+            description: "Наше решение в реальном времени использует актуальные данные через <br /> API, обеспечивая <br /> интеграцию с вашими системами и максимальную достоверность прогнозов."
         }
     ];
+
     return (
         <main className="main_page">
             <section className="top">
@@ -144,7 +145,10 @@ const Home: React.FC = () => {
                                         <img src={advantage.image} alt={advantage.alt} />
                                     
                                     </div>
-                                    <h3 className="advantage_title">{advantage.title}</h3>
+                                    <h3
+                                        className="advantage_title"
+                                        dangerouslySetInnerHTML={{ __html: advantage.title }}
+                                        />
                                 </div>
                             ))}
                         </div>
@@ -173,8 +177,7 @@ const Home: React.FC = () => {
                                     <div className="technology_img">
                                         <img src={technology.image} />
                                     </div>
-                                    <p className="technology_description">{technology.description}</p>
-                                  
+                                    <p className="technology_description" dangerouslySetInnerHTML={{ __html: technology.description }} /> 
                                 </div>
                             ))}
                         </div>

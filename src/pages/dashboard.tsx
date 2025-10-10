@@ -258,24 +258,28 @@ const Dashboard: React.FC = () => {
               <thead>
                 <tr>
                   <th>Дата</th>
-                  <th>Параметр</th>
-                  <th>Значение</th>
+                  <th>Уровень воды</th>
+                  <th>Осадки</th>
+                  <th>Скорость ветра</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>21.08.2025</td>
-                  <td>Уровень воды</td>
                   <td>3.0 м</td>
+                  <td>10 мм</td>
+                  <td>7 м/с</td>
                 </tr>
                 <tr>
                   <td>20.01.2025</td>
-                  <td>Осадки</td>
+                  <td>3.0 м</td>
                   <td>10 мм</td>
+                  <td>7 м/с</td>
                 </tr>
                 <tr>
                   <td>19.01.2025</td>
-                  <td>Скорость ветра</td>
+                  <td>3.0 м</td>
+                  <td>10 мм</td>
                   <td>7 м/с</td>
                 </tr>
               </tbody>

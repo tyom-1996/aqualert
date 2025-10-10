@@ -571,7 +571,7 @@ border-radius: 40px!important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
   /* max-width: 242px; */
   /* height: 41px; */
-  width: 60%;
+  /* width: 60%; */
 }
 
 .map-search-overlay:has(.map-suggestions-dropdown.show) .map-search-input-wrapper {
@@ -612,7 +612,7 @@ border-radius: 40px!important;
   border-radius: 0 0 15px 15px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
   /* max-width: 242px; */
-  width: 60%;
+  /* width: 60%; */
   max-height: 300px;
   overflow-y: auto;
   z-index: 999;
@@ -660,17 +660,19 @@ border-radius: 40px!important;
 
 /* Loading Analysis Overlay */
 .map-loading-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(163, 208, 232, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10002;
-  border-radius: 40px;
+  border-radius: 0;
 }
 
 .map-loading-content {
@@ -1652,3 +1654,63 @@ object-fit: cover;
   height: 100%;
   object-fit: cover;
 }
+
+@media (min-width: 1401px) and (max-width: 1422px) {
+  .historical-table th { 
+    font-size: 16px!important;
+  }
+
+}
+
+@media (min-width: 1381px) and (max-width: 1401px) {
+  .historical-table th { 
+    font-size: 15px!important;
+  }
+
+}
+
+
+@media (min-width: 1362px) and (max-width: 1381px) {
+  .historical-table th { 
+    font-size: 14px!important;
+  }
+  .historical-table td {
+    font-size: 16px!important;
+  }
+
+}
+
+
+@media (min-width: 1332px) and (max-width: 1362px) {
+  .historical-table th { 
+    font-size: 13px!important;
+  }
+  .historical-table td {
+    font-size: 15px!important;
+  }
+
+}
+
+
+@media (min-width: 1120px) and (max-width: 1332px) {
+  .historical-table th { 
+    font-size: 12px!important;
+  }
+  .historical-table td {
+    font-size: 14px!important;
+  }
+
+}
+
+@media  (max-width: 1120px) {
+  .historical-table th { 
+    font-size: 11px!important;
+  }
+  .historical-table td {
+    font-size: 13px!important;
+  }
+
+}
+
+
+  
