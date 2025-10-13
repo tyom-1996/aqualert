@@ -7,6 +7,7 @@ const WindIcon = () => (
     width={24}
     height={19}
     fill="none"
+    viewBox="0 0 24 19"
   >
     <path
       fill="#fff"

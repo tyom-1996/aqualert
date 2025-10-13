@@ -7,6 +7,7 @@ const SunIcon = () => (
   width={30}
   height={30}
   fill="none"
+  viewBox="0 0 30 30"
 >
   <path
     fill="url(#a)"

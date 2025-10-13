@@ -4,7 +4,7 @@ import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { useMemo, useState, useEffect, useRef } from "react";
 import SearchIcon from "../assets/icons/searchIcon";
 
-const containerStyle = { width: "100%", height: "579px", borderRadius: "40px" };
+// Styles moved to CSS: see .map-container in dashboard.css
 
 // Define libraries outside component to prevent re-renders
 const libraries: ("places")[] = ["places"];
@@ -175,7 +175,7 @@ export default function GMap() {
 
       {/* Google Map */}
       <GoogleMap
-        mapContainerStyle={containerStyle}
+        mapContainerClassName="map-container"
         center={center}
         zoom={12}
         options={{

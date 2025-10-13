@@ -7,6 +7,7 @@ const DropIcon2 = () => (
   width={18}
   height={24}
   fill="none"
+  viewBox="0 0 18 24"
 >
   <path
     fill="#fff"
