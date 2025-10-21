@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import "../../../assets/css/login.css";
+import { useSignUpIndividual } from "../../../hooks/useSignUpIndividual";
+import { useSignUpCorporation } from "../../../hooks/useSignUpCorporation";
+import axios from "axios";
 
 interface FormData {
     accountType: 'individual' | 'legal';
@@ -24,6 +27,8 @@ interface FormErrors {
 
 const Register: React.FC = () => {
     const router = useRouter();
+    const { signUp: signUpIndividual, loading: loadingIndividual, error: errorIndividual } = useSignUpIndividual();
+    const { signUp: signUpCorporation, loading: loadingCorporation, error: errorCorporation } = useSignUpCorporation();
     
     // Form state
     const [formData, setFormData] = useState<FormData>({
@@ -41,6 +46,8 @@ const Register: React.FC = () => {
     
     // Loading state
     const [isLoading, setIsLoading] = useState(false);
+    // Success popup state
+    const [showSuccess, setShowSuccess] = useState(false);
     
     // Handle input changes
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,21 +131,50 @@ const Register: React.FC = () => {
         }
         
         setIsLoading(true);
-        
+
         try {
-            // Here you would typically make an API call to register
-            // For now, we'll simulate a registration process
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Simulate successful registration
-            console.log("Registration attempt:", formData);
-            
-            // Redirect to main page or dashboard
-            router.push("/");
-            
-        } catch (error) {
+            if (formData.accountType === 'individual') {
+                const res = await signUpIndividual({
+                    email: formData.email,
+                    username: formData.fullName,
+                    password: formData.password,
+                });
+                if (!res) throw new Error('sign up failed');
+            } else {
+                const res = await signUpCorporation({
+                    email: formData.email,
+                    inn: formData.inn || '',
+                    name: formData.fullName,
+                    org_name: formData.organizationName || '',
+                    password: formData.password,
+                    username: formData.fullName,
+                });
+                if (!res) throw new Error('sign up failed');
+            }
+
+            setShowSuccess(true);
+        } catch (error: unknown) {
+            let generalMessage = "Ошибка регистрации. Проверьте данные и попробуйте снова.";
+            if (axios.isAxiosError(error)) {
+                const data: any = error.response?.data;
+                const errorsArray = Array.isArray(data)
+                    ? data
+                    : Array.isArray(data?.errors)
+                        ? data.errors
+                        : [];
+
+                const messages = errorsArray.map((e: any) => String(e?.message || "").toLowerCase());
+                const rawString = typeof data === "string" ? data.toLowerCase() : "";
+
+                if (messages.some((m: string) => m.includes("username already taken")) || rawString.includes("username already taken")) {
+                    generalMessage = "Имя пользователя уже занято";
+                }
+            } else if (error instanceof Error) {
+                generalMessage = error.message;
+            }
+
             setErrors({
-                general: "Ошибка регистрации. Проверьте данные и попробуйте снова."
+                general: generalMessage
             });
         } finally {
             setIsLoading(false);
@@ -303,6 +339,22 @@ const Register: React.FC = () => {
                     </span>
                 </div>
             </div>
+
+            {showSuccess && (
+                <div className="popup_overlay">
+                    <div className="popup_container">
+                        <h2 className="popup_title">Регистрация прошла успешно</h2>
+                        <p className="popup_text">Вы успешно зарегистрировались.</p>
+                        <button
+                            type="button"
+                            className="popup_button"
+                            onClick={handleLoginClick}
+                        >
+                            Перейти к входу
+                        </button>
+                    </div>
+                </div>
+            )}
         </main>
     );
 };

@@ -112,24 +112,38 @@ client.interceptors.response.use(
 
             return new Promise(async (resolve, reject) => {
                 try {
-                    console.log('Calling refresh-token endpoint...')
+                    console.log('Calling refresh endpoint...')
                     console.log('Base URL:', baseURL)
-                    console.log('Full URL:', `${baseURL}/auth/refresh-token`)
                     
                     // Create a separate axios instance to avoid infinite loops with interceptors
                     const refreshClient = axios.create({ baseURL })
-                    const { data } = await refreshClient.post('/auth/refresh-token', {
-                        refreshToken: storedRt,
-                    })
-
-                    console.log('Refresh token response:', data)
-
-                    // Validate response structure
-                    if (!data.token || !data.refreshToken) {
-                        throw new Error('Invalid response structure from refresh token endpoint')
+                    
+                    // Try new endpoint first
+                    let data: any
+                    try {
+                        const res = await refreshClient.post('/api/v1/auth/refresh', {
+                            refresh_token: storedRt,
+                        })
+                        data = res.data
+                        console.log('Refresh via /api/v1/auth/refresh response:', data)
+                    } catch (firstErr) {
+                        console.warn('New refresh endpoint failed, falling back to /auth/refresh-token', firstErr?.response?.status)
+                        const res = await refreshClient.post('/auth/refresh-token', {
+                            refreshToken: storedRt,
+                        })
+                        data = res.data
+                        console.log('Refresh via legacy /auth/refresh-token response:', data)
                     }
 
-                    const { token: newAt, refreshToken: newRt } = data
+                    // Normalize different shapes
+                    const newAt = data?.access_token || data?.token || data?.accessToken
+                    const newRt = data?.refresh_token || data?.refreshToken
+
+                    // Validate response structure
+                    if (!newAt || !newRt) {
+                        throw new Error('Invalid response structure from refresh endpoint')
+                    }
+
                     console.log('Token refresh successful, updating localStorage')
 
                     // Save new tokens to localStorage

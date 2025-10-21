@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import "../../../assets/css/login.css";
+import { useSignIn } from "../../../hooks/useSignIn";
 
 interface FormData {
     username: string;
@@ -15,6 +16,7 @@ interface FormErrors {
 
 const Login: React.FC = () => {
     const router = useRouter();
+    const { signIn, loading: signingIn } = useSignIn();
     
     // Form state
     const [formData, setFormData] = useState<FormData>({
@@ -72,18 +74,14 @@ const Login: React.FC = () => {
         }
         
         setIsLoading(true);
-        
+
         try {
-            // Here you would typically make an API call to authenticate
-            // For now, we'll simulate a login process
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Simulate successful login
-            console.log("Login attempt:", formData);
-            
-            // Redirect to main page or dashboard
-            router.push("/");
-            
+            const res = await signIn({
+                username: formData.username,
+                password: formData.password,
+            })
+            if (!res) throw new Error('sign in failed')
+            router.push("/dashboard")
         } catch (error) {
             setErrors({
                 general: "Ошибка входа. Проверьте данные и попробуйте снова."
@@ -118,7 +116,7 @@ const Login: React.FC = () => {
                                 onChange={handleInputChange}
                                 placeholder="Имя пользователя"
                                 className={`login_input ${errors.username ? 'error' : ''}`}
-                                disabled={isLoading}
+                                disabled={isLoading || signingIn}
                             />
                             {errors.username && (
                                 <span className="error_message">{errors.username}</span>
@@ -133,7 +131,7 @@ const Login: React.FC = () => {
                                 onChange={handleInputChange}
                                 placeholder="Пароль"
                                 className={`login_input ${errors.password ? 'error' : ''}`}
-                                disabled={isLoading}
+                                disabled={isLoading || signingIn}
                             />
                             {errors.password && (
                                 <span className="error_message">{errors.password}</span>
@@ -143,7 +141,7 @@ const Login: React.FC = () => {
                         <button 
                             type="submit" 
                             className="login_button"
-                            disabled={isLoading}
+                            disabled={isLoading || signingIn}
                         >
                             {isLoading ? "Загрузка..." : "Продолжить"}
                         </button>
