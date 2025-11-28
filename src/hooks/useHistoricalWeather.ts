@@ -5,7 +5,7 @@ export type HistoricalPeriod = 'day' | 'week' | 'month';
 
 export interface HistoricalWeatherEntry {
   period: string;
-  temperature: number | null;l
+  temperature: number | null;
   waterfall: number | null;
   wind_speed: number | null;
 }
