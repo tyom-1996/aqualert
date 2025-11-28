@@ -14,7 +14,17 @@ interface PlaceSuggestion {
   placeId: string;
 }
 
-export default function GMap() {
+export interface SelectedPlace {
+  name: string;
+  lat: number;
+  lng: number;
+}
+
+interface GMapProps {
+  onLocationConfirm?: (place: SelectedPlace) => void;
+}
+
+export default function GMap({ onLocationConfirm }: GMapProps) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries,
@@ -23,7 +33,7 @@ export default function GMap() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState<PlaceSuggestion[]>([]);
-  const [selectedPlace, setSelectedPlace] = useState<{ name: string; lat: number; lng: number } | null>(null);
+  const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [mapCenter, setMapCenter] = useState({ lat: 59.9343, lng: 30.3351 });
@@ -119,6 +129,10 @@ export default function GMap() {
     if (selectedPlace) {
       setShowConfirmModal(false);
       setShowLoading(true);
+
+      if (onLocationConfirm) {
+        onLocationConfirm(selectedPlace);
+      }
       
       // Simulate analysis/loading for 2.5 seconds
       setTimeout(() => {
