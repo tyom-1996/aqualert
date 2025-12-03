@@ -33,9 +33,13 @@ const Login: React.FC = () => {
     // Handle input changes
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        // Remove spaces from username field
+        const processedValue = name === 'username' 
+            ? value.replace(/\s+/g, '') 
+            : value;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: processedValue
         }));
         
         // Clear error when user starts typing
@@ -77,7 +81,7 @@ const Login: React.FC = () => {
 
         try {
             const res = await signIn({
-                username: formData.username,
+                username: formData.username.trim(),
                 password: formData.password,
             })
             if (!res) throw new Error('sign in failed')

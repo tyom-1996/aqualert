@@ -52,9 +52,13 @@ const Register: React.FC = () => {
     // Handle input changes
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
+        // Remove spaces from username field
+        const processedValue = (name === 'fullName' && type !== 'checkbox') 
+            ? value.replace(/\s+/g, '') 
+            : value;
         setFormData(prev => ({
             ...prev,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: type === 'checkbox' ? checked : processedValue
         }));
         
         // Clear error when user starts typing
@@ -88,7 +92,7 @@ const Register: React.FC = () => {
         const newErrors: FormErrors = {};
         
         if (!formData.fullName.trim()) {
-            newErrors.fullName = "ФИО обязательно";
+            newErrors.fullName = "Имя пользователя обязательно";
         }
         
         if (!formData.email.trim()) {
@@ -136,7 +140,7 @@ const Register: React.FC = () => {
             if (formData.accountType === 'individual') {
                 const res = await signUpIndividual({
                     email: formData.email,
-                    username: formData.fullName,
+                    username: formData.fullName.trim(),
                     password: formData.password,
                 });
                 if (!res) throw new Error('sign up failed');
@@ -147,7 +151,7 @@ const Register: React.FC = () => {
                     name: formData.fullName,
                     org_name: formData.organizationName || '',
                     password: formData.password,
-                    username: formData.fullName,
+                    username: formData.fullName.trim(),
                 });
                 if (!res) throw new Error('sign up failed');
             }
@@ -222,7 +226,7 @@ const Register: React.FC = () => {
                             name="fullName"
                             value={formData.fullName}
                             onChange={handleInputChange}
-                            placeholder="ФИО"
+                            placeholder="Имя пользователя"
                             className={`login_input ${errors.fullName ? 'error' : ''}`}
                             disabled={isLoading}
                         />
