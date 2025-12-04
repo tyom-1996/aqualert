@@ -16,6 +16,7 @@ import useHistoricalWeather, {
 import { useFloodingProbability } from '../hooks/useFloodingProbability';
 import { useMeteorologicalSituation } from '../hooks/useMeteorologicalSituation';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';
+import client from '../api/client';
 
 const Dashboard: React.FC = () => {
   const [showLoader, setShowLoader] = useState(false);
@@ -134,6 +135,11 @@ const Dashboard: React.FC = () => {
       return <DropIcon2 />;
     }
 
+    // Проверка на ночное время (view: night)
+    if (meta.includes('night') || meta.includes('ночь')) {
+      return <MoonIcon2 />;
+    }
+
     if (
       meta.includes('clear') ||
       meta.includes('ясно') ||
@@ -180,6 +186,11 @@ const Dashboard: React.FC = () => {
       return <DropIcon2 />;
     }
 
+    // Проверка на ночное время (view: night)
+    if (meta.includes('night') || meta.includes('ночь')) {
+      return <MoonIcon2 />;
+    }
+
     if (
       meta.includes('clear') ||
       meta.includes('ясно') ||
@@ -199,14 +210,64 @@ const Dashboard: React.FC = () => {
     return isNight ? <MoonIcon2 /> : <CloudyIcon />;
   };
 
-  const handleDownloadReport = () => {
+  const handleDownloadReport = async () => {
     setShowLoader(true);
-    
-    // Simulate loading time
-    setTimeout(() => {
+
+    try {
+      // Вызываем бэкенд для генерации PDF-отчёта
+      const response = await client.get('/api/v1/report/hydrological', {
+        params: {
+          latitude: coords.lat,
+          longitude: coords.lon,
+        },
+      });
+
+      // Ожидаем, что бэкенд вернёт ссылку на готовый PDF
+      const downloadUrl =
+        response.data?.download_url ||
+        response.data?.url ||
+        response.data?.downloadUrl ||
+        response.data?.link ||
+        response.data?.file_url ||
+        response.data?.fileUrl;
+
+      if (!downloadUrl) {
+        // eslint-disable-next-line no-console
+        console.error('Ссылка на скачивание не найдена в ответе. Полный ответ:', response.data);
+        throw new Error('Ссылка на скачивание не найдена в ответе');
+      }
+
+      // Если бэкенд вернул относительный путь ("/files/report.pdf"),
+      // собираем полный URL на основе API-базы, чтобы избежать 404 от Next.js
+      let finalUrl = downloadUrl;
+      if (typeof window !== 'undefined' && downloadUrl.startsWith('/')) {
+        const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '';
+        if (apiBase) {
+          const normalizedBase = apiBase.replace(/\/+$/, '');
+          finalUrl = `${normalizedBase}${downloadUrl}`;
+        }
+      }
+
+      // Инициируем скачивание файла в браузере
+      const link = document.createElement('a');
+      link.href = finalUrl;
+      link.download = 'aqualert-report.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
       setShowLoader(false);
-      setShowModal(true);
-    }, 2000);
+      setShowModal(false);
+    } catch (error: any) {
+      // eslint-disable-next-line no-console
+      console.error('Ошибка при запросе PDF отчёта:', error);
+      // eslint-disable-next-line no-console
+      console.error('Error response:', error?.response?.data);
+      setShowLoader(false);
+      alert('Ошибка при генерации отчета. Пожалуйста, попробуйте позже.');
+      setShowModal(false);
+    }
   };
 
   const handleCloseModal = () => {
@@ -512,7 +573,7 @@ const Dashboard: React.FC = () => {
                   <h3>Опасные погодные условия</h3>
                 </div>
                 <div className="alert-description">
-                  С 22 августа в бассейнах рек Санкт-Петербурга будет наблюдаться сложная гидрологическая обстановка, связанная с низкой меженью (маловодьем).
+                  {flooding?.description}
                 </div>
                 <div className="pdf-icon-wrapper">
                     <button className="download-button" onClick={handleDownloadReport}>
@@ -748,57 +809,23 @@ const Dashboard: React.FC = () => {
       {showModal && (
         <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="mobile_logo">
+            {/* <div className="mobile_logo">
               <img src="/images/mobile_logo.png" alt="" />
             </div>  
             <div className="modal_img">
               <img src="/images/popup_img.png" alt="" />
-            </div>
-            {/* <div className="modal-header">
-              <div className="modal-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12Z" stroke="#248DC5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M8 12L10.5 14.5L16 9" stroke="#248DC5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h2 className="modal-title">Аналитический отчет о метеорологической и гидрологической обстановке в бассейне реки Волга</h2>
-            </div>
-            
-            <div className="modal-body">
-              <div className="report-details">
-                <p><strong>Период анализа:</strong> 22 октября – 28 октября 2023 г.</p>
-                <p><strong>Дата составления:</strong> 25 октября 2023 г.</p>
-              </div>
-              
-              <div className="report-section">
-                <h3>1. Введение</h3>
-                <p>
-                  В данном отчете представлен анализ текущей метеорологической и гидрологической обстановки в бассейне реки Волга. 
-                  Особое внимание уделено динамике температуры воздуха, количеству осадков и уровню воды в реке. 
-                  Данная информация имеет важное значение для планирования навигации, водопользования, 
-                  сельского хозяйства и оценки рисков наводнений.
+            </div> */}
+            {flooding?.description && (
+              <div className="modal-description" style={{ padding: '20px', textAlign: 'center' }}>
+                <p style={{ fontFamily: 'Poppins, sans-serif', fontSize: '16px', color: '#000000', lineHeight: '24px' }}>
+                  {flooding?.description}
                 </p>
               </div>
-              
-              <div className="report-graph">
-                <h4>Динамика среднесуточной температуры воздуха</h4>
-                <div className="graph-container">
-                  <div className="graph-placeholder">
-                    <div className="graph-line astrakhan"></div>
-                    <div className="graph-line nizhny"></div>
-                    <div className="graph-line yaroslavl"></div>
-                    <div className="graph-labels">
-                      <span>Астрахань (низовье)</span>
-                      <span>Нижний Новгород (среднее течение)</span>
-                      <span>Ярославль (верхнее течение)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            )}
+            
             
             <div className="modal-footer">
-              <button className="modal-download-btn" onClick={handleCloseModal}>
+              <button className="modal-download-btn" onClick={handleDownloadReport}>
                 Скачать отчёт
               </button>
             </div>

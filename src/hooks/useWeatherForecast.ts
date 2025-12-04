@@ -62,7 +62,7 @@ function mapViewToRu(view?: string): string | undefined {
   const v = view.toLowerCase();
 
   if (v === 'clear') return 'ясно';
-  if (v === 'night') return 'ясно ночью';
+  if (v === 'night') return 'ночь';
   if (v === 'cloudy' || v === 'clouds' || v === 'overcast') return 'облачно';
   if (v === 'rain' || v === 'rainy' || v === 'drizzle') return 'дождь';
   if (v === 'snow' || v === 'snowy') return 'снег';
