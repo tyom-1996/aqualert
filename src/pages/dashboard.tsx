@@ -446,9 +446,7 @@ const Dashboard: React.FC = () => {
                             '--'}
                         </div>
                         <div className="weather-description-icon-wrapper">
-                          {currentPoint
-                            ? getHourlyIcon(currentPoint)
-                            : getCurrentIcon()}
+                          {getCurrentIcon()}
                           <span className="weather-description">
                             {weatherLoading && !weatherError && 'Загружаем погоду...'}
                             {!weatherLoading && weather && weather.description}
@@ -780,11 +778,6 @@ const Dashboard: React.FC = () => {
                     )}
                 </tbody>
               </table>
-            </div>
-            <div className="pagination">
-              <span className="page active">1</span>
-              <span className="page">2</span>
-              <span className="page">3</span>
             </div>
           </div>
         </div>

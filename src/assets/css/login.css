@@ -46,7 +46,9 @@
     justify-content: center;
     padding: 40px 0 30px 0;
     overflow: scroll;
+    scrollbar-width: none;
 }
+
 
 .login_form_wrapper {
     padding: 13px 38px 71px 38px;
@@ -55,7 +57,7 @@
     margin: 0 auto;
     border-radius: 24px;
     background: rgba(255, 254, 254, 0.01);
-    /* border: 1px solid rgba(255, 255, 255, 0.5); */
+    border: 1px solid rgba(255, 255, 255, 0.5);
 
     /* background blur */
     backdrop-filter: blur(48px);
@@ -68,6 +70,18 @@
        overflow: scroll;
 }
 
+/* Chrome, Safari */
+.login_form_wrapper::-webkit-scrollbar {
+    display: none;
+}
+.login_main_page::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+.login_form_wrapper {
+    scrollbar-width: none;
+}
 .login_form_wrapper2 {
     height: 80dvh;
 }
